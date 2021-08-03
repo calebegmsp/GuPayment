@@ -25,13 +25,13 @@ trait GuPaymentTrait
     /**
      * Make a "one off" charge on the customer for the given amount.
      *
-     * @param  int  $amount
+     * @param  integer|null  $amount
      * @param  array  $options
      * @return \Iugu_Charge
      *
      * @throws \InvalidArgumentException
      */
-    public function charge($amount, array $options = [])
+    public function charge(?int $amount, array $options = [])
     {
         if (! array_key_exists('items', $options) &&
             ! array_key_exists('invoice_id', $options)
@@ -485,7 +485,7 @@ trait GuPaymentTrait
     /**
      * Get the Iugu customer for the user.
      *
-     * @return \IuguCustomer
+     * @return \Iugu_Customer
      *
      * @throws \InvalidArgumentException
      */
