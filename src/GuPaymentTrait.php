@@ -31,7 +31,7 @@ trait GuPaymentTrait
      *
      * @throws \InvalidArgumentException
      */
-    public function charge(?int $amount, array $options = [])
+    public function charge($amount, array $options = [])
     {
         if (! array_key_exists('items', $options) &&
             ! array_key_exists('invoice_id', $options)
