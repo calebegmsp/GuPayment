@@ -30,10 +30,6 @@ matrix:
       env:
         - testbench=6.x
         - phpunit=8.5.x
-    - php: 8.0
-      env:
-        - testbench=6.x
-        - phpunit=9.3.x
 
 sudo: false
 
