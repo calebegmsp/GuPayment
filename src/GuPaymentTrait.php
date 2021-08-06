@@ -25,7 +25,7 @@ trait GuPaymentTrait
     /**
      * Make a "one off" charge on the customer for the given amount.
      *
-     * @param  int  $amount
+     * @param  integer|null  $amount
      * @param  array  $options
      * @return \Iugu_Charge
      *
@@ -485,7 +485,7 @@ trait GuPaymentTrait
     /**
      * Get the Iugu customer for the user.
      *
-     * @return \IuguCustomer
+     * @return \Iugu_Customer
      *
      * @throws \InvalidArgumentException
      */
