@@ -33,7 +33,7 @@ matrix:
     - php: 8.0
       env:
         - testbench=6.x
-        - phpunit=9.3.0
+        - phpunit=9.3.x
 
 sudo: false
 
