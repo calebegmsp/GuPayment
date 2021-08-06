@@ -281,7 +281,7 @@ class GuPaymentTest extends TestCase
         $this->assertEquals($token->extra_info->year, $card->year);
         $this->assertEquals($token->extra_info->month, $card->month);
         $this->assertEquals(strtolower($token->extra_info->brand), strtolower($card->brand));
-        $this->assertEquals($token->extra_info->holder_name, $card->holder);
+        $this->assertEquals($token->extra_info->holder_name, $card->holder_name);
         $this->assertEquals($token->extra_info->display_number, $card->display_number);
     }
 
@@ -296,7 +296,7 @@ class GuPaymentTest extends TestCase
         $this->assertEquals($token->extra_info->year, $card->data->year);
         $this->assertEquals($token->extra_info->month, $card->data->month);
         $this->assertEquals(strtolower($token->extra_info->brand), strtolower($card->data->brand));
-        $this->assertEquals($token->extra_info->holder_name, $card->data->holder);
+        $this->assertEquals($token->extra_info->holder_name, $card->data->holder_name);
         $this->assertEquals($token->extra_info->display_number, $card->data->display_number);
     }
 
