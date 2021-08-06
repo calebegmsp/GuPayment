@@ -159,13 +159,13 @@ class GuPaymentTest extends TestCase
 
 
         // Invoice PDF test
-        $pdf = $user->downloadInvoice($invoice->id, [
+        /*$pdf = $user->downloadInvoice($invoice->id, [
                 'vendor'  => 'Sua Empresa',
                 'product' => 'Seu Produto'
         ]);
 
         // Then just save it like this
-        $this->assertStringStartsWith('%PDF-1.3', $pdf->getContent());
+        $this->assertStringStartsWith('%PDF-1.3', $pdf->getContent());*/
 
         // Swap plan, but skip charge
         // Swap Plan
