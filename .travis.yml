@@ -6,14 +6,6 @@ env:
 
 matrix:
   include:
-    - php: 7.1
-      env:
-        - testbench=3.5.x
-        - phpunit=6.0.x
-    - php: 7.1
-      env:
-        - testbench=3.6.x
-        - phpunit=7.0.x
     - php: 7.2
       env:
         - testbench=3.5.x
@@ -34,6 +26,14 @@ matrix:
       env:
         - testbench=5.x
         - phpunit=8.4.x
+    - php: 7.4
+      env:
+        - testbench=6.x
+        - phpunit=8.5.x
+    - php: 8.0
+      env:
+        - testbench=6.x
+        - phpunit=9.3.3
 
 sudo: false
 
