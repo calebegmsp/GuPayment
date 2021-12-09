@@ -567,8 +567,8 @@ trait GuPaymentTrait
      */
     public function refund($id)
     {
-        $iuguInovice = $this->findInvoice($id)->asIuguInvoice();
+        $iuguInvoice = $this->findInvoice($id)->asIuguInvoice();
 
-        return $iuguInovice->refund();
+        return $iuguInvoice->refund();
     }
 }
