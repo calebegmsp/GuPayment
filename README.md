@@ -404,7 +404,19 @@ Para reembolsar uma fatura utilize o método `refund`:
 // Iugu aceita cobranças em centavos
 $user->refund($invoiceId);
 ```
-
+### Gerar Segunda Via de Fatura (Apenas BOLETO)
+Para gerar uma segunda via de boleto de uma fatura utilize o método `duplicate`
+```php
+// Envie o id da fatura e as configurações
+$config = [
+    'due_date' => Carbon::now()->addDays(3),
+    'keep_early_payment_discount' => true,
+    'current_fines_option' => true,
+    'ignore_canceled_email' => true,
+    'ignore_due_email' => true
+];
+$user->duplicate($invoiceId, $config);
+```
 
 ## Clientes e métodos de Pagamento (Cartões)
 

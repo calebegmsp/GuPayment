@@ -27,7 +27,7 @@ class GuPaymentTest extends TestCase
     public static function setUpBeforeClass() : void
     {
         if (file_exists(__DIR__.'/../.env')) {
-            $dotenv = new \Dotenv\Dotenv(__DIR__.'/../');
+            $dotenv = \Dotenv\Dotenv::create(__DIR__.'/../');
             $dotenv->load();
         }
     }
@@ -761,6 +761,37 @@ class GuPaymentTest extends TestCase
         $user->delete();
 
         $this->assertInstanceOf(User::class, $subscription->user);
+    }
+
+    public function testDuplicateInvoice(){
+        $user = $this->createUser();
+
+        $user->createAsIuguCustomer($token = $this->getTestToken());
+
+        $options = ['payer' => [
+            'cpf_cnpj' => '169.893.520-00',
+            'address' => [
+                'zip_code' => '41150-120',
+                'number' => '1'
+            ],
+            'name' => $user->name
+        ]];
+
+        $invoice = $user->createInvoice(100, Carbon::now(), 'Um item', $options);
+        
+        $config = [
+            'due_date' => Carbon::now()->addDays(3),
+            'keep_early_payment_discount' => true
+        ];
+
+        $invoiceDuplicate = $user->duplicate($invoice->id,$config);
+        $canceledInvoice = $user->findInvoice($invoice->id);
+        $this->assertEquals($canceledInvoice->status, 'canceled');
+        $this->assertEquals($invoiceDuplicate->status,'pending');
+        $this->assertEquals($canceledInvoice->total_cents, $invoiceDuplicate->total_cents);
+        $this->assertEquals($invoiceDuplicate->logs[0]->notes, "Segunda via gerada da FATURA # ".$canceledInvoice->id);
+        $this->assertEquals(count($canceledInvoice->items),count($invoiceDuplicate->items));
+
     }
 
     protected function createUser()

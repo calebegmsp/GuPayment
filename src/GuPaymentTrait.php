@@ -4,6 +4,7 @@ namespace Potelo\GuPayment;
 
 use Iugu;
 use Exception;
+use Carbon\Carbon;
 use InvalidArgumentException;
 use Iugu_Charge as IuguCharge;
 use Iugu_Invoice as IuguInvoice;
@@ -570,5 +571,17 @@ trait GuPaymentTrait
         $iuguInvoice = $this->findInvoice($id)->asIuguInvoice();
 
         return $iuguInvoice->refund();
+    }
+
+    /**
+     * Duplicate an in progress invoice
+     * @param string $id the invoice id
+     * @param array $config configuration of the duplicate
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function duplicate($id,$config){
+        $iuguInvoice = $this->findInvoice($id)->asIuguInvoice();
+
+        return $iuguInvoice->duplicate($config);
     }
 }
