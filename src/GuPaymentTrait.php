@@ -4,7 +4,6 @@ namespace Potelo\GuPayment;
 
 use Iugu;
 use Exception;
-use Carbon\Carbon;
 use InvalidArgumentException;
 use Iugu_Charge as IuguCharge;
 use Iugu_Invoice as IuguInvoice;
