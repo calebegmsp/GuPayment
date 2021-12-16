@@ -578,7 +578,8 @@ trait GuPaymentTrait
      * @param array $config configuration of the duplicate
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function duplicate($id,$config){
+    public function duplicate($id,$config)
+    {
         $iuguInvoice = $this->findInvoice($id)->asIuguInvoice();
 
         return $iuguInvoice->duplicate($config);

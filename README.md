@@ -409,7 +409,7 @@ Para gerar uma segunda via de boleto de uma fatura utilize o método `duplicate`
 ```php
 // Envie o id da fatura e as configurações
 $config = [
-    'due_date' => Carbon::now()->addDays(3),
+    'due_date' => "2021-12-16",
     'keep_early_payment_discount' => true,
     'current_fines_option' => true,
     'ignore_canceled_email' => true,

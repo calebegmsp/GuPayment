@@ -763,7 +763,8 @@ class GuPaymentTest extends TestCase
         $this->assertInstanceOf(User::class, $subscription->user);
     }
 
-    public function testDuplicateInvoice(){
+    public function testDuplicateInvoice()
+    {
         $user = $this->createUser();
 
         $user->createAsIuguCustomer($token = $this->getTestToken());
