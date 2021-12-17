@@ -567,8 +567,21 @@ trait GuPaymentTrait
      */
     public function refund($id)
     {
-        $iuguInovice = $this->findInvoice($id)->asIuguInvoice();
+        $iuguInvoice = $this->findInvoice($id)->asIuguInvoice();
 
-        return $iuguInovice->refund();
+        return $iuguInvoice->refund();
+    }
+
+    /**
+     * Duplicate an in progress invoice
+     * @param string $id the invoice id
+     * @param array $config configuration of the duplicate
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function duplicate($id,$config)
+    {
+        $iuguInvoice = $this->findInvoice($id)->asIuguInvoice();
+
+        return $iuguInvoice->duplicate($config);
     }
 }
