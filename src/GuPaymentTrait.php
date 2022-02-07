@@ -590,7 +590,7 @@ trait GuPaymentTrait
      *
      * @return  Iugu_SearchResult|mixed|void
      */
-    public function getIuguCreditCards()
+    public function creditCards()
     {
         Iugu::setApiKey($this->getApiKey());
 
