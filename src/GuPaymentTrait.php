@@ -584,16 +584,4 @@ trait GuPaymentTrait
 
         return $iuguInvoice->duplicate($config);
     }
-
-    /**
-     * Get all customer payment methods.
-     *
-     * @return  Iugu_SearchResult|mixed|void
-     */
-    public function creditCards()
-    {
-        Iugu::setApiKey($this->getApiKey());
-
-        return \Iugu_PaymentMethod::fetch(['customer_id' => $this->getIuguUserId()]);
-    }
 }
