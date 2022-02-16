@@ -292,6 +292,20 @@ trait GuPaymentTrait
 
         return IuguSubscription::fetch($subscriptionId);
     }
+    
+    /**
+     * Get user's Iugu Subscriptions
+     *
+     * @param array $params
+     * @return void
+     */
+    public function getIuguSubscriptions($params = [])
+    {
+        Iugu::setApiKey($this->getApiKey());
+
+        $customer = $this->asIuguCustomer();
+        return IuguSubscription::search(array_merge(['customer_id' => $customer->id], $params));
+    }
 
 
     /**
