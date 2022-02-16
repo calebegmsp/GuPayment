@@ -4,6 +4,7 @@ namespace Potelo\GuPayment;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
+use Iugu_Subscription as IuguSubscription;
 
 class SubscriptionBuilder
 {
@@ -174,8 +175,6 @@ class SubscriptionBuilder
      */
     public function create($token = null, array $options = [])
     {
-        $iuguSubscriptionModelIdColumn = getenv('IUGU_SUBSCRIPTION_MODEL_ID_COLUMN') ?: config('services.iugu.subscription_model_id_column', 'iugu_id');
-        $iuguSubscriptionModelPlanColumn = getenv('IUGU_SUBSCRIPTION_MODEL_PLAN_COLUMN') ?: config('services.iugu.subscription_model_plan_column', 'iugu_plan');
 
         $customer = $this->getIuguCustomer($token, $options);
 
@@ -186,6 +185,19 @@ class SubscriptionBuilder
 
         $subscriptionIugu = $this->user->createIuguSubscription($this->buildPayload($customer->id));
 
+        return $this->createLocalSubscription($subscriptionIugu);
+    }
+
+    /**
+     * Creates a local subscription from an Iugu subscription
+     *
+     * @param IuguSubscription $subscriptionIugu
+     * @return \Potelo\GuPayment\Subscription|boolean
+     */
+    public function createLocalSubscription($subscriptionIugu)
+    {
+        $iuguSubscriptionModelIdColumn = getenv('IUGU_SUBSCRIPTION_MODEL_ID_COLUMN') ?: config('services.iugu.subscription_model_id_column', 'iugu_id');
+        $iuguSubscriptionModelPlanColumn = getenv('IUGU_SUBSCRIPTION_MODEL_PLAN_COLUMN') ?: config('services.iugu.subscription_model_plan_column', 'iugu_plan');
         if (isset($subscriptionIugu->errors)) {
             if (isset($subscriptionIugu->LR)) {
                 $this->lr = $subscriptionIugu->LR;
@@ -229,7 +241,7 @@ class SubscriptionBuilder
      */
     protected function getIuguCustomer($token = null, array $options = [])
     {
-        if (! $this->user->getIuguUserId()) {
+        if (!$this->user->getIuguUserId()) {
             $customer = $this->user->createAsIuguCustomer(
                 $token,
                 array_merge($options, array_filter(['coupon' => $this->coupon]))
@@ -238,7 +250,7 @@ class SubscriptionBuilder
             $customer = $this->user->asIuguCustomer();
 
             if (!empty($options)) {
-                foreach($options as $key => $value){
+                foreach ($options as $key => $value) {
                     $customer->{$key} = $value;
                 }
                 $customer->save();
@@ -429,5 +441,4 @@ class SubscriptionBuilder
 
         return $this;
     }
-
 }
