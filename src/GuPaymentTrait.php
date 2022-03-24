@@ -4,6 +4,7 @@ namespace Potelo\GuPayment;
 
 use Iugu;
 use Exception;
+use IuguObjectNotFound;
 use InvalidArgumentException;
 use Iugu_Charge as IuguCharge;
 use Iugu_Invoice as IuguInvoice;
@@ -420,7 +421,7 @@ trait GuPaymentTrait
 
         try {
             return new Invoice($this, IuguInvoice::fetch($id));
-        } catch (Exception $e) {
+        } catch (IuguObjectNotFound $e) {
             //
         }
 
