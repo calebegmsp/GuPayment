@@ -43,6 +43,11 @@
             ]
         }
     },
+    "config": {
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
+    },
     "prefer-stable": true,
     "minimum-stability": "dev"
 }
