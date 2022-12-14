@@ -273,6 +273,15 @@ $skipCharge = true;
 $user->subscription('main')->swap('silver', $skipCharge);
 ```
 
+Caso queira alterar a data de vencimento (Que é quando a próxima fatura será gerada/cobrada), basta passar um terceiro parâmetro com a data no objeto Carbon:
+```php
+$user = App\User::find(1);
+
+$skipCharge = true;
+$nextDue = Carbon::now()->addDays(10);
+$user->subscription('main')->swap('silver', $skipCharge, $nextDue);
+```
+
 ### Cancelando assinaturas
 Para cancelar uma assinatura, basta chamar o método `cancel` na assinatura do usuário:
 ```php

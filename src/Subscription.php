@@ -137,7 +137,7 @@ class Subscription extends Model
      * @param \Carbon\Carbon $expiresAt
      * @return $this
      */
-    public function swap($plan, $skipCharge = false, $expiresAt = null)
+    public function swap($plan, $skipCharge = false, Carbon $expiresAt = null)
     {
         $subscription = $this->asIuguSubscription();
 
