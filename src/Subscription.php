@@ -134,9 +134,10 @@ class Subscription extends Model
      *
      * @param string $plan
      * @param bool $skipCharge
+     * @param \Carbon\Carbon $expiresAt
      * @return $this
      */
-    public function swap($plan, $skipCharge = false)
+    public function swap($plan, $skipCharge = false, $expiresAt = null)
     {
         $subscription = $this->asIuguSubscription();
 
@@ -144,6 +145,9 @@ class Subscription extends Model
         if ($skipCharge) {
             $subscription->plan_identifier = $plan;
             $subscription->skip_charge = true;
+            if ($expiresAt) {
+                $subscription->expires_at = $expiresAt->format('Y-m-d');
+            }
             $subscription->save();
         } else {
             $subscription->change_plan($plan);
