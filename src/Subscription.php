@@ -180,7 +180,7 @@ class Subscription extends Model
         } else {
             $this->ends_at = is_null($subscription->expires_at)
                 ? Carbon::now()
-                : Carbon::createFromFormat('Y-m-d', $subscription->expires_at);
+                : new Carbon($subscription->expires_at);
         }
 
         $this->save();
