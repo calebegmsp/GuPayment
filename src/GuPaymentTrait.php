@@ -298,7 +298,7 @@ trait GuPaymentTrait
      * Get user's Iugu Subscriptions
      *
      * @param array $params
-     * @return void
+     * @return void|object|array
      */
     public function getIuguSubscriptions($params = [])
     {
