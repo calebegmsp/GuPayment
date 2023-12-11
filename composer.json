@@ -46,7 +46,10 @@
         }
     },
     "scripts": {
-      "test": "phpunit"
+      "test": [
+        "Composer\\Config::disableProcessTimeout",
+        "phpunit"
+      ]
     },
     "prefer-stable": true,
     "minimum-stability": "dev"
