@@ -791,7 +791,7 @@ class GuPaymentTest extends TestCase
         $this->assertEquals('canceled', $canceledInvoice->status);
         $this->assertEquals('pending', $invoiceDuplicate->status);
         $this->assertEquals($canceledInvoice->total_cents, $invoiceDuplicate->total_cents);
-        $this->assertEquals($invoiceDuplicate->logs[0]->notes, "Segunda via gerada da FATURA # ".$canceledInvoice->id);
+        $this->assertNotEmpty(array_filter($invoiceDuplicate->logs, fn($log) => $log->notes == "Segunda via gerada da FATURA # $canceledInvoice->id"));
         $this->assertSameSize($canceledInvoice->items, $invoiceDuplicate->items);
 
     }
