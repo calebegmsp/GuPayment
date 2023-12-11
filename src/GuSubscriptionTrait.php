@@ -11,6 +11,37 @@ use Potelo\GuPayment\Iugu\IuguSubscriptionDecorator;
 trait GuSubscriptionTrait
 {
     /**
+     * The attributes that are not mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = [
+        'trial_ends_at', 'ends_at',
+        'created_at', 'updated_at',
+    ];
+
+    protected $iuguSubscriptionModelIdColumn;
+
+    protected $iuguSubscriptionModelPlanColumn;
+
+    protected $cacheIuguSubscription;
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->table = getenv('GUPAYMENT_SIGNATURE_TABLE') ?: config('services.iugu.signature_table', 'subscriptions');
+        $this->iuguSubscriptionModelIdColumn = getenv('IUGU_SUBSCRIPTION_MODEL_ID_COLUMN') ?: config('services.iugu.subscription_model_id_column', 'iugu_id');
+        $this->iuguSubscriptionModelPlanColumn = getenv('IUGU_SUBSCRIPTION_MODEL_PLAN_COLUMN') ?: config('services.iugu.subscription_model_plan_column', 'iugu_plan');
+    }
+
+    /**
      * Get the user that owns the subscription.
      */
     public function user()
