@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": ">=7.4",
+        "php": ">=7.3",
         "iugu/iugu": "dev-master",
         "dompdf/dompdf": "^2.0"
     },
