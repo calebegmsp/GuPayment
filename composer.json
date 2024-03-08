@@ -12,7 +12,7 @@
     "repositories": [
         {
             "type": "git",
-            "url": "https://github.com/Potelo/iugu-php.git"
+            "url": "https://github.com/iugu/iugu-php.git"
         }
     ],
     "require": {
