@@ -1,5 +1,5 @@
 {
-    "name": "calebe/gu-payment",
+    "name": "calebegmsp/gu-payment",
     "description": "GuPayment fornece uma interface para controlar assinaturas do iugu.com",
     "keywords": ["laravel", "iugu", "billing", "pagamentos"],
     "license": "MIT",
